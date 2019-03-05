@@ -65,11 +65,11 @@ def main():
     dest_path = args.dest
     filename = args.file
 
-    repo = login_to_github(filename, ssh_url, https_url, ssh_key_path,
-                           username, password)
+    repo = login_to_github(ssh_url, https_url, ssh_key_path, username,
+                           password)
 
     if args.move:
-        move(repo)
+        move(filename, repo, ssh_url)
     elif args.new_move:
         new_move(input_path, dest_path)
     elif args.clear:

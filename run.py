@@ -36,12 +36,15 @@ def get_args():
     parser.add_argument(
         "-d", "--dest", help="path to ssh_key for setting ssh connection",
         action="store", dest="dest")
+    parser.add_argument(
+        "-P", "--path", help="path to ssh_key for setting ssh connection",
+        action="store", dest="path")
     operation_group.add_argument(
         "-m", "--move", action="store_true", dest="move",
         help="Move data from path to destination")
     operation_group.add_argument(
         "-n", "--new", action="store_true",
-        dest="new", help="New move data from path to destination")
+        dest="new_move", help="New move data from path to destination")
     operation_group.add_argument(
         "-c", "--clear", action="store_true",
         dest="clear", help="Clear move")
@@ -61,9 +64,10 @@ def main():
     ssh_key_path = args.key
     username = args.user
     password = args.passwd
-    input_path = args.input
-    dest_path = args.dest
+    # input_path = args.input
+    # dest_path = args.dest
     filename = args.file
+    path = args.path
 
     repo = login_to_github(ssh_url, https_url, ssh_key_path, username,
                            password)
@@ -71,9 +75,9 @@ def main():
     if args.move:
         move(filename, repo, ssh_url)
     elif args.new_move:
-        new_move(input_path, dest_path)
+        new_move(filename, repo)
     elif args.clear:
-        clear()
+        clear(path)
 
 
 if __name__ == '__main__':

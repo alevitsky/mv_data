@@ -28,7 +28,7 @@ def get_args():
         "-k", "--key", help="path to ssh_key for setting ssh connection",
         action="store", dest="key")
     parser.add_argument(
-        "-f", "--file", help="path to ssh_key for setting ssh connection",
+        "-f", "--file", nargs='+', help="path to ssh_key for setting ssh connection",
         action="store", dest="file")
     parser.add_argument(
         "-i", "--input", help="path to ssh_key for setting ssh connection",
@@ -66,16 +66,16 @@ def main():
     password = args.passwd
     # input_path = args.input
     # dest_path = args.dest
-    filename = args.file
+    filenames = args.file
     path = args.path
 
     repo = login_to_github(ssh_url, https_url, ssh_key_path, username,
                            password)
 
     if args.move:
-        move(filename, repo, ssh_url)
+        move(filenames, repo, ssh_url)
     elif args.new_move:
-        new_move(filename, repo)
+        new_move(filenames, repo)
     elif args.clear:
         clear(path)
 

@@ -5,14 +5,14 @@
 import shutil
 
 
-def move(filename, repo, ssh_url):
+def move(filenames, repo, ssh_url):
     git = repo.git
     git.remote('add', 'origin', ssh_url)
     git.config('core.sparsecheckout', 'true')
-    with open('tmp/.git/info/sparse-checkout', 'w') as f:
-        f.write(filename)
+    for filename in filenames:
+        with open('tmp/.git/info/sparse-checkout', 'w') as f:
+            f.write(filename)
     git.pull('origin', 'develop')
-    return git
 
 
 def new_move(filename, repo):

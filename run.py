@@ -5,7 +5,7 @@
 import argparse
 
 from git_connection import login_to_github
-from src.move import move, new_move, clear
+from src.move import move, move_to_dest, new_move, clear
 
 
 def get_args():
@@ -46,6 +46,9 @@ def get_args():
         "-n", "--new", action="store_true",
         dest="new_move", help="New move data from path to destination")
     operation_group.add_argument(
+        "-t", "--target", action="store_true",
+        dest="target", help="Target destination")
+    operation_group.add_argument(
         "-c", "--clear", action="store_true",
         dest="clear", help="Clear move")
 
@@ -64,8 +67,8 @@ def main():
     ssh_key_path = args.key
     username = args.user
     password = args.passwd
-    # input_path = args.input
-    # dest_path = args.dest
+    input_path = args.input
+    dest_path = args.dest
     filenames = args.file
     path = args.path
 
@@ -76,6 +79,8 @@ def main():
         move(filenames, repo, ssh_url)
     elif args.new_move:
         new_move(filenames, repo)
+    elif args.target:
+        move_to_dest(input_path, dest_path)
     elif args.clear:
         clear(path)
 

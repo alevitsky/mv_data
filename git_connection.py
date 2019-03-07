@@ -19,7 +19,5 @@ def login_to_github(ssh_url=None, https_url=None, ssh_key_path=None,
     """
     if ssh_url:
         repo_dir = os.path.join(os.getcwd(), 'tmp')
-        repo = Repo.init(repo_dir,
-                         env={"GIT_SSH_COMMAND": 'ssh -i {path}'
-                              .format(path=ssh_key_path)})
+        repo = Repo.init(repo_dir)
         return repo

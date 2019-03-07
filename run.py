@@ -28,7 +28,8 @@ def get_args():
         "-k", "--key", help="path to ssh_key for setting ssh connection",
         action="store", dest="key")
     parser.add_argument(
-        "-f", "--file", nargs='+', help="path to ssh_key for setting ssh connection",
+        "-f", "--file", nargs='+',
+        help="path to ssh_key for setting ssh connection",
         action="store", dest="file")
     parser.add_argument(
         "-i", "--input", help="path to ssh_key for setting ssh connection",
@@ -37,7 +38,7 @@ def get_args():
         "-d", "--dest", help="path to ssh_key for setting ssh connection",
         action="store", dest="dest")
     parser.add_argument(
-        "-P", "--path", help="path to ssh_key for setting ssh connection",
+        "-P", "--path", help="path for remove dir or file.",
         action="store", dest="path")
     operation_group.add_argument(
         "-m", "--move", action="store_true", dest="move",

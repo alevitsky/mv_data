@@ -10,7 +10,7 @@ def move(filenames, repo, ssh_url):
     git.remote('add', 'origin', ssh_url)
     git.config('core.sparsecheckout', 'true')
     for filename in filenames:
-        with open('tmp/.git/info/sparse-checkout', 'w') as f:
+        with open('tmp/.git/info/sparse-checkout', 'a') as f:
             f.write(filename)
     git.pull('origin', 'develop')
 
